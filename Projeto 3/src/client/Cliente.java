@@ -1,22 +1,14 @@
 package client;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import manipulacao.Manipulacao;
 
 public class Cliente {
     private String nome;
     private int idade;
     private int cpf;
-
-    public void gerarPastas(){
-        File pasta = new File("Diretório");
-        pasta.mkdir();
-        File f1 = new File(pasta,"clientes");
-        f1.mkdir();
-        File f2 = new File(pasta,"filmes");
-        f2.mkdir();
-        File f3 = new File(pasta,"filmes alugados");
-        f3.mkdir();
-    }
 
     //adciona novo cliente
     public void novoCliente(){
@@ -34,9 +26,8 @@ public class Cliente {
         cadastro = in.nextLine();
         System.out.println("INSIRA O NOME DO CLIENTE :");
         nome = in2.nextLine();
-        File dir= new File("Diretório/clientes/"+ cadastro);
-        dir.mkdir();
-        File file = new File(dir, nome + ".txt");
+        // cadastro/nome.txt
+        File file = new File(Manipulacao.clientes + cadastro + ".txt");
 
         System.out.println("INSIRA A IDADE DO CLIENTE :");
         idade = in2.nextLine();
@@ -49,36 +40,41 @@ public class Cliente {
             System.out.println("CPF INSERIDO INCORRETAMENTE");
         }
 
-        try{
-            FileWriter fWriter = new FileWriter(file);
-            BufferedWriter bRWriter = new BufferedWriter(fWriter);
-            bRWriter.write(dados);
-            bRWriter.close();
-            fWriter.close();
-
-            FileReader fReader = new FileReader(file);
-            BufferedReader bReader = new BufferedReader(fReader);
-            String aux = bReader.readLine();
-            while (aux!=null) {
-                aux = bReader.readLine();
-            }
-            bReader.close();
-            fReader.close();
-        }catch(IOException e){System.out.println("ERRO AO SALVAR");}   
+        Manipulacao.escreverArquivo(file, dados);  
           
     }
 
         //OBS: Utilizar esse método após verificar que o cliente não possui nenhum filme, se houver, tem que fazer a devolução primeiro;
-        public void deletarCliente() throws FileNotFoundException{
+    public void deletarCliente() throws FileNotFoundException{
         String cadastro = "";
         Scanner in = new Scanner(System.in);
         System.out.println("INSIRA O NÚMERO DE CADASTRO DO CLIENTE :");
         cadastro = in.nextLine();
-        File file = new File("Diretório/clientes/"+cadastro);
+        File file = new File(Manipulacao.clientes + cadastro + ".txt");
         file.delete();
         System.out.println("CLIENTE REMOVIDO");
     }
 
+    public void pesquisarCliente() throws Exception{
+        Scanner in = new Scanner(System.in);
+        System.out.println("INSIRA O NÚMERO DE CADASTRO DO CLIENTE :");
+        String cadastro = in.nextLine();
+        File file = new File(Manipulacao.clientes + cadastro + ".txt");
+        String[] dados = Manipulacao.lerArquivo(file).split(",");
+        System.out.println(dados.length);
+        String mostraDados = "Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2];
+        System.out.println(mostraDados);
+    }
+
+    public void listarClientes() throws Exception{
+        File cliente = new File(Manipulacao.clientes);
+        for(File clientes : cliente.listFiles()){
+            String[] dados = Manipulacao.lerArquivo(clientes).split(",");
+            System.out.println("====================================");
+            System.out.print("Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2]);
+        }
+        System.out.println("====================================");
+    }
     //getters / setters
     public String getNome() {
         return nome;

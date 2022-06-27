@@ -1,8 +1,11 @@
 import java.util.Scanner;
+
+import manipulacao.Manipulacao;
 import menu.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        Manipulacao.gerarPastas();
         MenuCliente menucliente=new MenuCliente();
         Scanner in=new Scanner(System.in);
         int opção=0;/*int opção2=0;*/
