@@ -10,12 +10,16 @@ import client.Cliente;
 public class MenuCliente {
     Cliente cliente = new Cliente();
     public void mostrarMenu(){
-        System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR CLIENTE\n2-DELETAR CLIENTE\n3-PESQUISAR CLIENTE\n4-LISTAR CLIENTES\n5-VOLTAR");
         Scanner in = new Scanner(System.in);
-        int opção;
-        while(true){
-            opção=in.nextInt();
-            switch(opção){
+        Scanner in2 = new Scanner(System.in);
+        boolean flag = false;
+        int opcao;
+        String espera = "";
+        while(!flag){
+            
+            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR CLIENTE\n2-DELETAR CLIENTE\n3-PESQUISAR CLIENTE\n4-LISTAR CLIENTES\n5-VOLTAR");
+            opcao = in.nextInt();
+            switch(opcao){
                 case 1:
                         try {
                             cliente.novoCliente();
@@ -29,6 +33,7 @@ public class MenuCliente {
                         } catch(FileNotFoundException e) {
                             e.printStackTrace();
                         }
+                        espera = in2.nextLine();
                     break;
                 case 3:
                     try{
@@ -36,6 +41,7 @@ public class MenuCliente {
                     } catch(Exception e){
                         e.printStackTrace();
                     }
+                    espera = in2.nextLine();
                     break;
                 case 4:
                     try{
@@ -43,8 +49,22 @@ public class MenuCliente {
                     } catch(Exception e){
                         e.printStackTrace();
                     }
+                    espera = in2.nextLine();
+                    break;
+                case 5:
+                    flag = true;
+                    break;
+                default:
+                    System.out.println("OPÇÃO INVALIDA");
+                    espera = in2.nextLine();
                     break;
             }
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
     }
 }

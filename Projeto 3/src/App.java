@@ -7,6 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Manipulacao.gerarPastas();
         MenuCliente menucliente=new MenuCliente();
+        MenuFilme menuFilme = new MenuFilme();
         Scanner in=new Scanner(System.in);
         int opção=0;/*int opção2=0;*/
         while(opção!=3){
@@ -16,7 +17,9 @@ public class App {
                 menucliente.mostrarMenu();
             }
             else if(opção==2){
-                System.out.println("LOL LMAO");
+                menuFilme.mostrarMenuFilme();
+            } else {
+                System.out.println("MAMA BOLA 3000 <3");
             }
         }
         in.close();
