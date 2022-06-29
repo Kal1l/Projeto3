@@ -1,6 +1,5 @@
 package client;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import manipulacao.Manipulacao;
@@ -10,11 +9,10 @@ public class Cliente {
     private int idade;
     private int cpf;
 
-    //adciona novo cliente
+    //adIciona novo cliente
     public void novoCliente(){
         String dados = "";
-        //número de cadastro do cliente na loja
-        String cadastro = "";
+        String cadastro = "";   //número de cadastro do cliente na loja
         String idade = "";
         String cpf = "";
         String nome = "";
@@ -74,6 +72,31 @@ public class Cliente {
             System.out.print("Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2]);
         }
         System.out.println("====================================");
+    }
+
+    public void alterarDados() throws Exception{
+        Scanner in = new Scanner(System.in);
+        System.out.println("Digite o codigo do cliente : ");
+        String codigo = in.nextLine();
+        File cliente = new File(Manipulacao.clientes + codigo + ".txt");
+        String[] dados = Manipulacao.lerArquivo(cliente).split(",");
+        System.out.println("Digite o nome :");
+        String novoNome = in.nextLine();
+        if(novoNome.equals(" ")){
+            novoNome = dados[0];
+        }
+        System.out.println("Digite a idade :");
+        String novaIdade = in.nextLine();
+        if(novaIdade.equals(" ")){
+            novaIdade = dados[1];
+        }
+        System.out.println("Digite o CPF :");
+        String novoCPF = in.nextLine();
+        if(novoCPF.equals((" "))){
+            novoCPF = dados[2];
+        }
+        String salvaDados = novoNome + "," + novaIdade + "," + novoCPF;
+        Manipulacao.escreverArquivoApagando(cliente, salvaDados);
     }
     //getters / setters
     public String getNome() {

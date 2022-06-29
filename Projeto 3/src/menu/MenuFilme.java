@@ -1,7 +1,6 @@
 package menu;
 
 import java.util.Scanner;
-
 import filme.Filme;
 
 public class MenuFilme {
@@ -13,7 +12,7 @@ public class MenuFilme {
         boolean flag = false;
         String espera = "";
         while(!flag){
-            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR FILME\n2-DELETAR FILME\n3-PESQUISAR FILME\n4-LISTAR FILMES\n5-VOLTAR");
+            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR FILME\n2-DELETAR FILME\n3-PESQUISAR FILME\n4-LISTAR FILMES\n5-ALTERAR FILME\n6-VOLTAR");
             opcao = in.nextInt();
             switch(opcao){
                 case 1:
@@ -32,6 +31,13 @@ public class MenuFilme {
                     espera = in2.nextLine();
                     break;
                 case 5:
+                    try {
+                        filme.alterarDados();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 6:
                     flag = false;
                     break;
                 default:
@@ -39,12 +45,12 @@ public class MenuFilme {
                     espera = in2.nextLine();
                     break;
             }
+            /*System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");*/
         }
     }
 }

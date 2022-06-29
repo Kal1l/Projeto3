@@ -21,7 +21,19 @@ public class Manipulacao {
             bw.close();
             fw.close();
         } catch(IOException e){
-            System.out.println("ERROR");
+            System.out.println("ERRO AO SALVAR");
+        }
+    }
+
+    public static void escreverArquivoApagando(File file, String texto){
+        try{
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(texto);
+            bw.close();
+            fw.close();
+        } catch(IOException e){
+            System.out.println("ERRO AO SALVAR");
         }
     }
 
@@ -49,9 +61,9 @@ public class Manipulacao {
             br.close();
             fr.close();
         } catch(FileNotFoundException e){
-            System.out.println("ERROR");
+            System.out.println("ERRO, ARQUIVO NÃO ENCONTRADO.");
         } catch(IOException e){
-            System.out.println("ERROR");
+            System.out.println("ERRO AO SALVAR.");
         }
         return aux;
     }
