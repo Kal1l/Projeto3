@@ -22,6 +22,5 @@ public class App {
                 System.out.println("MAMA BOLA 3000 <3");
             }
         }
-        in.close();
     }
 }
