@@ -4,7 +4,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import client.Cliente;
-
+/*
+Lista de afazeres 
+    Adicionar métodos de multa ao menu
+    Criar o método de Ranking de filmes do cliente
+*/
 public class MenuCliente {
     Cliente cliente = new Cliente();
     public void mostrarMenu(){
@@ -12,7 +16,6 @@ public class MenuCliente {
         boolean flag = false;
         int opcao;
         while(!flag){
-            
             System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR CLIENTE\n2-DELETAR CLIENTE\n3-PESQUISAR CLIENTE\n4-LISTAR CLIENTES\n5-ALTERAR CLIENTE\n6-VOLTAR");
             opcao = in.nextInt();
             switch(opcao){
