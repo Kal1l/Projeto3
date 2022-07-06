@@ -11,7 +11,9 @@ Problemas:
     Caso do cliente alugando filmes pra classificações maiores ainda não resolvido
 
  Lista de afazeres:
+    Adicionar quando o cliente não existir
     Adicionar o IOException e o FileNotFound
+    Ao devolver adicionar o preço do filme
  */
 
 public class AlugarDevolver {
@@ -21,7 +23,7 @@ public class AlugarDevolver {
         String codigo = in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
         if(verificaFilmeAlugado.length() == 0) {
-            System.out.println("ESCOLHA UM FILME DA LISTA A SEGUIR :");
+            System.out.println("ESCOLHA UM FILME DA LISTA A SEGUIR(DIGITE O CÓDIGO DO FILME) :");
             File filmes = new File(Manipulacao.filmes);
             for(File filme: filmes.listFiles()){
                 String[] dados = Manipulacao.lerArquivo(filme).split(";");
@@ -36,24 +38,28 @@ public class AlugarDevolver {
             String codigoFilme1 = in.nextLine();
             String codigoFilme2 = in.nextLine();
             String codigoFilme3 = in.nextLine();
+            double preco = 0;
+            int filmesTotal = 0;
             String aluguel = "";
+            String salvaDados = "";
             for(File filme : filmes.listFiles()){
                 String codigoDoFilmeProcura = filme.getName().replace(".txt","");
-                String[] dados = Manipulacao.lerArquivo(filme).split(",");
+                String[] dados = Manipulacao.lerArquivo(filme).split(";");
                 if(codigoFilme1.equals(codigoDoFilmeProcura) || codigoFilme2.equals(codigoDoFilmeProcura) ||
                     codigoFilme3.equals(codigoDoFilmeProcura)){
                         aluguel+=dados[0] + ";" + dados[4] + "\n";
+                        preco += Double.parseDouble(dados[4].replaceAll(",", "."));
+                        File historicoCliente=new File(Manipulacao.historicoClientes+codigo+".txt");
+                        Manipulacao.escreverArquivo(historicoCliente, dados[0]+"\n");
+                        File historicoFilmes=new File(Manipulacao.historicoFilmes+"historico.txt");
+                        Manipulacao.escreverArquivo(historicoFilmes, dados[0]+"\n");
+                        filmesTotal++;
                 }
             }
             //Adiciona o valor da multa inicial
-            aluguel += "Multa : R$ 0.0";
-            String[] aux=aluguel.split(";");
+            salvaDados+= "Total : R$ ;" + preco + " ;"+filmesTotal+ "\n" + "\n" + aluguel;
             File aluguelFilme = new File(Manipulacao.filmesAlugados + codigo + ".txt");
-            Manipulacao.escreverArquivoApagando(aluguelFilme, aluguel);
-            File historicoCliente=new File(Manipulacao.historicoClientes+codigo+".txt");
-            Manipulacao.escreverArquivo(historicoCliente, aux[0]);
-            File historicoFilmes=new File(Manipulacao.historicoFilmes+"historico.txt");
-            Manipulacao.escreverArquivo(historicoFilmes, aux[0]);
+            Manipulacao.escreverArquivoApagando(aluguelFilme, salvaDados);
             System.out.println("ALUGUEL REALIZADO");
         } else {
             System.out.println("CLIENTE POSSUI PENDENCIAS EM NOSSO SISTEMA");

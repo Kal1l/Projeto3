@@ -56,7 +56,6 @@ public class Cliente {
         String cadastro = in.nextLine();
         File file = new File(Manipulacao.clientes + cadastro + ".txt");
         String[] dados = Manipulacao.lerArquivo(file).split(";");
-        System.out.println(dados.length);
         //mostra os dados do cliente pesquisado
         String mostraDados = "Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2];
         System.out.println(mostraDados);

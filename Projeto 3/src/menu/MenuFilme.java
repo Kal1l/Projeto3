@@ -13,7 +13,7 @@ public class MenuFilme {
         int opcao;
         boolean flag = false;
         while(!flag){
-            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR FILME\n2-DELETAR FILME\n3-PESQUISAR FILME\n4-LISTAR FILMES\n5-ALTERAR FILME\n6-VOLTAR");
+            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR FILME\n2-DELETAR FILME\n3-PESQUISAR FILME\n4-LISTAR FILMES\n5-ALTERAR FILME\n6-ALUGAR FILME(S)\n7-DEVOLVER FILMES\n8-VOLTAR");
             opcao = in.nextInt();
             switch(opcao){
                 case 1:
@@ -38,12 +38,14 @@ public class MenuFilme {
                 case 6:
                     try {
                         alugar.alugarFilme();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    } catch (Exception e) { e.printStackTrace();}
                     break;
                 case 7:
-                    flag = false;
+                    try{
+                        alugar.devolverFilme();
+                    } catch(Exception e) {e.printStackTrace();}
+                case 8:
+                    flag = true;
                     break;
                 default:
                     System.out.println("OPÇÃO INVALIDA");
