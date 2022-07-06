@@ -9,7 +9,7 @@ public class App {
         MenuCliente menucliente=new MenuCliente();
         MenuFilme menuFilme = new MenuFilme();
         Scanner in=new Scanner(System.in);
-        int opção=0;/*int opção2=0;*/
+        int opção=0;
         while(opção!=3){
             System.out.println("BEM VINDO, O QUE DESEJA ?\n1-CLIENTE\n2-FILME\n3-SAIR");
             opção=in.nextInt();
@@ -18,9 +18,14 @@ public class App {
             }
             else if(opção==2){
                 menuFilme.mostrarMenuFilme();
-            } else {
-                System.out.println("MAMA BOLA 3000 <3");
+            } 
+            else if(opção==3){
+                System.out.println("SISTEMA ENCERRADO");
+            }
+            else {
+                System.out.println("OPÇÃO INVÁLIDA");
             }
         }
+        in.close();
     }
 }

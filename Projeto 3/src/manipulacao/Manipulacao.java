@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class Manipulacao {
     public static final String clientes = "Diretorio/clientes/cadastro/";
     public static final String filmes = "Diretorio/filmes/";
-    public static final String filmesAlugados = "Diretorio/filmes/filmesAlugados/";
-    public static final String historicoFilmes = "Diretorio/filmes/historico/";
-    public static final String historicoClientes = "Diretorio/clientes/historico/";
+    public static final String filmesAlugados = "Diretorio/filmesAlugados/";
+    public static final String historicoFilmes = "Diretorio/historico/filmes/";
+    public static final String historicoClientes = "Diretorio/historico/cliente/";
 
 
     public static void escreverArquivo(File file, String texto){
