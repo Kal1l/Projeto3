@@ -40,7 +40,16 @@ public class Ranking {
         //juntando os dois arrays
         for(int i=0;i<set.size();i++){
             dadosArray[i]=qtd[i] + "," + nomeFilmes[i] +";";
-            dadosString+=dadosArray[i];
+        }
+        for(int i=0;i<set.size();i++){
+            for(int j = 1 ; j < set.size() ; j++){
+                if(qtd[i] < qtd[j]){
+                    String tmp = dadosArray[i];
+                    dadosArray[i] = dadosArray[j];
+                    dadosArray[j] = tmp;
+                }
+                dadosString+=dadosArray[i];
+            }
         }
 
         String[] dados = dadosString.split(";");

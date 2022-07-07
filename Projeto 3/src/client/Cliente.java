@@ -6,7 +6,7 @@ import manipulacao.Manipulacao;
 
 public class Cliente {
     //adIciona novo cliente
-    public void novoCliente(){
+    public void novoCliente() throws Exception{
         String dados = "";
         String cadastro = "";   //número de cadastro do cliente na loja
         String idade = "";
@@ -22,6 +22,12 @@ public class Cliente {
         nome = in2.nextLine();
         // cadastro/nome.txt
         File file = new File(Manipulacao.clientes + cadastro + ".txt");
+        File historicoCliente=new File(Manipulacao.historicoClientes+cadastro+".txt");
+        historicoCliente.createNewFile();
+        File alugados = new File(Manipulacao.filmesAlugados + cadastro + ".txt");
+        alugados.createNewFile();
+
+
 
         System.out.println("INSIRA A IDADE DO CLIENTE :");
         idade = in2.nextLine();

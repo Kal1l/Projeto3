@@ -24,6 +24,10 @@ public class App {
                 Ranking ranking = new Ranking();
                 ranking.rankearFilmes();
             }
+            else if(opção==4){
+                System.out.println("SAINDO");
+                System.exit(1);
+            }
             else {
                 System.out.println("OPÇÃO INVÁLIDA");
             }

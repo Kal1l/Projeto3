@@ -17,7 +17,6 @@ Problemas:
 
 public class AlugarDevolver {
     public void alugarFilme() throws Exception{
-        Filme biblioteca=new Filme();
         Scanner in = new Scanner(System.in);
         System.out.println("DIGITE O CODIGO DO CLIENTE");
         String codigo = in.nextLine();
@@ -49,7 +48,7 @@ public class AlugarDevolver {
                         preco += Double.parseDouble(dados[4].replaceAll(",", "."));
                         aluguel+=dados[0] + ";R$ " + dados[4] + "\n";
                         File historicoCliente=new File(Manipulacao.historicoClientes+codigo+".txt");
-                        Manipulacao.escreverArquivo(historicoCliente, dados[0]+"\n");
+                        Manipulacao.escreverArquivo(historicoCliente, dados[0]+";"+dados[1]+";"+dados[2]+"\n");
                         File historicoFilmes=new File(Manipulacao.historicoFilmes,"historico.txt");
                         Manipulacao.escreverArquivo(historicoFilmes, dados[0]+"\n");
                         filmesTotal++;
