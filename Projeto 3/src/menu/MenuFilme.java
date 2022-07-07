@@ -44,6 +44,7 @@ public class MenuFilme {
                     try{
                         alugar.devolverFilme();
                     } catch(Exception e) {e.printStackTrace();}
+                    break;
                 case 8:
                     flag = true;
                     break;

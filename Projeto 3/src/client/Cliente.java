@@ -98,4 +98,25 @@ public class Cliente {
         String salvaDados = novoNome + ";" + novaIdade + ";" + novoCPF;
         Manipulacao.escreverArquivoApagando(cliente, salvaDados);
     }
+
+    public void aplicarMulta() throws Exception{
+        Scanner in = new Scanner(System.in);
+        System.out.println("DIGITE O CODIGO DO CLIENTE");
+        String codigo=in.nextLine();
+        System.out.println("DIGITE OS DIAS DE ATRASO");
+        int dias=in.nextInt();
+        File file = new File(Manipulacao.filmesAlugados + codigo + ".txt");
+        String[] dados =  Manipulacao.lerArquivo(file).split("\n");
+        String[] dados2 = dados[0].split(";");
+        double valor = Double.parseDouble(dados2[1].replaceAll(",","."));
+        int filmesTotal = Integer.parseInt(dados2[2]);
+        double valor2 = valor + (1.20*dias*filmesTotal);
+        String salvarDados = "";
+        for(int cont=0;cont<dados.length;cont++){
+            String aux=dados[cont];
+            salvarDados += aux+"\n";
+        }
+        salvarDados += "Total c/multa: R$ " + valor2 +"\n";
+        Manipulacao.escreverArquivoApagando(file, salvarDados); 
+    }
 }

@@ -9,16 +9,14 @@ Lista de afazeres
     Adicionar métodos de multa ao menu
     Criar o método de Ranking de filmes do cliente
 */
-import client.Multa;
 public class MenuCliente {
     Cliente cliente = new Cliente();
-    Multa multa=new Multa();
     public void mostrarMenu(){
         Scanner in = new Scanner(System.in);
         boolean flag = false;
         int opcao;
         while(!flag){
-            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR CLIENTE\n2-DELETAR CLIENTE\n3-PESQUISAR CLIENTE\n4-LISTAR CLIENTES\n5-ALTERAR CLIENTE\n6-MULTAR CLIENTE\n7-REMOVER MULTA DE CLIENTE\n8-VOLTAR");
+            System.out.println("O QUE DESEJA REALIZAR?\n1-ADICIONAR CLIENTE\n2-DELETAR CLIENTE\n3-PESQUISAR CLIENTE\n4-LISTAR CLIENTES\n5-ALTERAR CLIENTE\n6-VOLTAR");
             opcao = in.nextInt();
             switch(opcao){
                 case 1:
@@ -57,20 +55,6 @@ public class MenuCliente {
                     }
                     break;
                 case 6:
-                    try{
-                        multa.aplicarMulta();
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                    break;
-                case 7:
-                try{
-                    multa.removerMulta();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                    break;
-                case 8:
                     flag = true;
                     break;
                 default:
