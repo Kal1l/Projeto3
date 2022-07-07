@@ -72,7 +72,8 @@ public class Cliente {
         for(File clientes : cliente.listFiles()){
             String[] dados = Manipulacao.lerArquivo(clientes).split(";");
             System.out.println("====================================");
-            System.out.print("Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2]);
+            System.out.print("Cadastro :" + clientes.getName().replace(".txt", ""));
+            System.out.print(",Nome :" + dados[0] + ",Idade :" + dados[1] + ", CPF :" + dados[2]);
         }
         System.out.println("====================================");
     }

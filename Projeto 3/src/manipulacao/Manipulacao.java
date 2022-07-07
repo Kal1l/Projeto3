@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Manipulacao {
-    public static final String clientes = "Diretorio/clientes/cadastro/";
+    public static final String clientes = "Diretorio/clientes/";
     public static final String filmes = "Diretorio/filmes/";
     public static final String filmesAlugados = "Diretorio/filmesAlugados/";
     public static final String historicoFilmes = "Diretorio/historico/filmes/";
