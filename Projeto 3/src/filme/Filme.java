@@ -64,17 +64,6 @@ public class Filme {
         System.out.println("====================================");
     }
 
-    //tem o código do filme e remove os atores, método usado quando vai alugar os filmes
-    public void listaFilmes2(){
-        File filme = new File(Manipulacao.filmes);
-        for(File filmes : filme.listFiles()){
-            String[] dados = Manipulacao.lerArquivo(filmes).split(";");
-            System.out.println("====================================");
-            System.out.println("Codigo do filme :" + filme.getName().replace(".txt", "")+", Titulo : " +dados[0]+", Genero :"+dados[2]+", Classificação :"+dados[3]+",Preço R$ :" + dados[4]);
-        }
-        System.out.println("====================================");
-    }
-
     public void alterarDados() throws Exception{
         Scanner in = new Scanner(System.in);
         System.out.println("Digite o codigo do filme : ");

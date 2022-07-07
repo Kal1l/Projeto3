@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import filme.Ranking;
 import manipulacao.Manipulacao;
 import menu.*;
 
@@ -20,7 +21,8 @@ public class App {
                 menuFilme.mostrarMenuFilme();
             } 
             else if(opção==3){
-                System.out.println("SISTEMA ENCERRADO");
+                Ranking ranking = new Ranking();
+                ranking.rankearFilmes();
             }
             else {
                 System.out.println("OPÇÃO INVÁLIDA");

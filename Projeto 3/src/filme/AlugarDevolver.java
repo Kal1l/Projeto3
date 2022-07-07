@@ -13,7 +13,6 @@ Problemas:
  Lista de afazeres:
     Adicionar quando o cliente não existir
     Adicionar o IOException e o FileNotFound
-    Ao devolver adicionar o preço do filme + multa(se houver)
  */
 
 public class AlugarDevolver {
@@ -26,7 +25,13 @@ public class AlugarDevolver {
         if(verificaFilmeAlugado.length() == 0) {
             System.out.println("ESCOLHA UM FILME DA LISTA A SEGUIR(DIGITE O CÓDIGO DO FILME) :");
             File filmes = new File(Manipulacao.filmes);
-            biblioteca.listaFilmes2();
+            for(File filme: filmes.listFiles()){
+                String[] dados = Manipulacao.lerArquivo(filme).split(";");
+                System.out.println("===============================");
+                System.out.print("Codigo do filme :" + filme.getName().replace(".txt", ""));
+                System.out.println(", Titulo : " +dados[0]+", Genero :"+dados[2]+", Classificação :"+dados[3]+",Preço R$ :" + dados[4]);
+            }
+            System.out.println("===============================");
             //File cliente = new File(Manipulacao.clientes+codigo+".txt");
             //String[] idade = Manipulacao.lerArquivo(cliente).split(",");  (Começo da exceção do cliente pegando filmes para classifiações maiores)
             String codigoFilme1 = in.nextLine();
@@ -45,7 +50,7 @@ public class AlugarDevolver {
                         aluguel+=dados[0] + ";R$ " + dados[4] + "\n";
                         File historicoCliente=new File(Manipulacao.historicoClientes+codigo+".txt");
                         Manipulacao.escreverArquivo(historicoCliente, dados[0]+"\n");
-                        File historicoFilmes=new File(Manipulacao.historicoFilmes+"historico.txt");
+                        File historicoFilmes=new File(Manipulacao.historicoFilmes,"historico.txt");
                         Manipulacao.escreverArquivo(historicoFilmes, dados[0]+"\n");
                         filmesTotal++;
                 }

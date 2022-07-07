@@ -54,7 +54,7 @@ public class Manipulacao {
                 diretorio.mkdirs();
             }
         }
-
+        //caso o outro path dê errado
         File file = new File(historicoFilmes,"historico.txt");
         file.createNewFile();
     }
