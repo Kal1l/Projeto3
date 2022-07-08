@@ -23,19 +23,23 @@ public class Manipulacao {
             bw.write(texto);
             bw.close();
             fw.close();
-        } catch(IOException e){
+        } catch(FileNotFoundException e){ 
+            System.out.println("ERRO, ARQUIVO NÃO ENCONTRADO ");}
+          catch(IOException e){
             System.out.println("ERRO AO SALVAR");
         }
     }
 
     public static void escreverArquivoApagando(File file, String texto){
         try{
-            FileWriter fw = new FileWriter(file);
+            FileWriter fw = new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(texto);
             bw.close();
             fw.close();
-        } catch(IOException e){
+        } catch(FileNotFoundException e){ 
+            System.out.println("ERRO, ARQUIVO NÃO ENCONTRADO "); }
+          catch(IOException e){
             System.out.println("ERRO AO SALVAR");
         }
     }

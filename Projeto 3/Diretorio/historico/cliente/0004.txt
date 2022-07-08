@@ -1,14 +1,1 @@
-Thor: Ragnarok;Chris Hemsworth, Taika Waititi,Cate Blanchett;Aventura, Acao
-Orgulho e Preconceito;Keira Knightley, Matthew Macfadyen, Rosamund Pike;Romance, Drama 
-One piece;Monkey D.Luffy, Roronoa Zoro, Sanji, Nami;Aventura
-Kimetsu no Yaiba;Kamado Tanjiro, Kamado Nezuko, Zenitsu;Aventura, Acao, Drama
-One piece;Monkey D.Luffy, Roronoa Zoro, Sanji, Nami;Aventura
-Castlevania;Alucard,Trevor Belmont;Acao, Terror
-Dororo;Dororo, Hyakkimaru;Acao, Drama, Aventura
-Angel Beats;Yuzuru Otanashi, Yuri Nakamura;Drama, Romance
-Dororo;Dororo, Hyakkimaru;Acao, Drama, Aventura
-Hellsing;Alucard, Seras Victoria;Terror
-Dororo;Dororo, Hyakkimaru;Acao, Drama, Aventura
-Hellsing;Alucard, Seras Victoria;Terror
-Thor: Ragnarok;Chris Hemsworth, Taika Waititi,Cate Blanchett;Aventura, Acao
-Kimi no Na wa;Taki Tachibana, Mitsuha Miyamizu, Miki Okudera;Romance, Drama
+Tengen Toppa Gurren Langann;Yoko Littner, Kamina, Simon;Aventura

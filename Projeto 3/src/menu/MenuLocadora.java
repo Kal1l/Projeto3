@@ -12,7 +12,7 @@ public class MenuLocadora {
         int opcao;
         boolean flag = false;
         while(!flag){
-            System.out.println("OPCAO DESEJADA:\n1-ALUGAR FILME(S)\n2-DEVOLVER FILME(S)\n3-SUGERIR FILMES\n4-FILMES MAIS ALUGADOS\n5-VOLTAR");
+            System.out.println("OPCAO DESEJADA:\n1-ALUGAR FILME(S)\n2-DEVOLVER FILME(S)\n3-SUGERIR FILMES\n4-LISTAR FILMES MAIS ALUGADOS\n5-LISTAR FILMES ALUGADOS\n6-VOLTAR");
             opcao=in.nextInt();
             switch(opcao){
             case 1:
@@ -42,6 +42,13 @@ public class MenuLocadora {
                 relatorio.rankearFilmes();
                 break;
             case 5:
+                    try {
+                        relatorio.mostrarFilmesAlugados();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                break;
+            case 6:
                 flag = true;
                 break;
             default:

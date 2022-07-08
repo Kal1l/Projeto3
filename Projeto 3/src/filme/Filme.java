@@ -1,6 +1,8 @@
 package filme;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -16,7 +18,7 @@ public class Filme {
     private int classificacao;
     private double preco;*/
 
-    public void adicionarFilme(){
+    public void adicionarFilme() throws FileNotFoundException{
         Scanner in = new Scanner(System.in);
         String dados = "";
         System.out.println("Digite o codigo do filme :");
@@ -41,17 +43,20 @@ public class Filme {
         System.out.println("Digite o codigo de cadastro do Filme : ");
         String codigo = in.nextLine();
         File file = new File(Manipulacao.filmes + codigo + ".txt");
+        if(file.isFile()){
         file.delete();
-        System.out.println("Filme removido");
+        System.out.println("Filme removido");}
+        else{System.out.println("NÚMERO DE CADASTRO NÃO EXISTE");}
     }
 
-    public void pesquisarFilme(){
+    public void pesquisarFilme() throws Exception{
         Scanner in = new Scanner(System.in);
         System.out.println("Digite o codigo do filme : ");
         String codigo = in.nextLine();
         File file = new File(Manipulacao.filmes + codigo + ".txt");
         String[] dados = Manipulacao.lerArquivo(file).split(";");
         System.out.println("Titulo : " +dados[0]+ ",atores :" +dados[1]+",genero :"+dados[2]+",classificação :"+dados[3]+",preço :" + dados[4]);
+
     }
 
     public void listarFilmes(){
@@ -69,33 +74,38 @@ public class Filme {
         System.out.println("Digite o codigo do filme : ");
         String codigo = in.nextLine();
         File filme = new File(Manipulacao.filmes + codigo + ".txt");
-        String[] dados = Manipulacao.lerArquivo(filme).split(";");
-        System.out.println("Digite o titulo :");
-        String novoTitulo = in.nextLine();
-        if(novoTitulo.equals(" ")){
-            novoTitulo = dados[0];
+        if(filme.isFile()){
+            String[] dados = Manipulacao.lerArquivo(filme).split(";");
+            System.out.println("Digite o titulo :");
+            String novoTitulo = in.nextLine();
+            if(novoTitulo.equals(" ")){
+                novoTitulo = dados[0];
+            }
+            System.out.println("Digite os atores :");
+            String novosAtores = in.nextLine();
+            if(novosAtores.equals(" ")){
+                novosAtores = dados[1];
+            }
+            System.out.println("Digite o genero :");
+            String novoGenero = in.nextLine();
+            if(novoGenero.equals(" ")){
+                novoGenero = dados[2];
+            }
+            System.out.println("Digite a nova classificação :");
+            String novaClassificacao = in.nextLine();
+            if(novaClassificacao.equals(" ")){
+                novaClassificacao = dados[3];
+            }
+            System.out.println("Digite o novo preço :");
+            String novoPreco = in.nextLine();
+            if(novoPreco.equals(" ")){
+                novoPreco = dados[4];
+            }
+            String salvaDados = novoTitulo + ';' + novosAtores + ';' + novoGenero + ';' + novaClassificacao + ';' + novoPreco;
+            Manipulacao.escreverArquivoApagando(filme, salvaDados);
+        } else {
+            System.out.println("NUMERO DE CADASTRO NÃO EXISTE");
         }
-        System.out.println("Digite os atores :");
-        String novosAtores = in.nextLine();
-        if(novosAtores.equals(" ")){
-            novosAtores = dados[1];
-        }
-        System.out.println("Digite o genero :");
-        String novoGenero = in.nextLine();
-        if(novoGenero.equals(" ")){
-            novoGenero = dados[2];
-        }
-        System.out.println("Digite a nova classificação :");
-        String novaClassificacao = in.nextLine();
-        if(novaClassificacao.equals(" ")){
-            novaClassificacao = dados[3];
-        }
-        System.out.println("Digite o novo preço :");
-        String novoPreco = in.nextLine();
-        if(novoPreco.equals(" ")){
-            novoPreco = dados[4];
-        }
-        String salvaDados = novoTitulo + ';' + novosAtores + ';' + novoGenero + ';' + novaClassificacao + ';' + novoPreco;
-        Manipulacao.escreverArquivoApagando(filme, salvaDados);
     }
+    
 }

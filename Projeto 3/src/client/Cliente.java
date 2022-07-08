@@ -6,7 +6,7 @@ import manipulacao.Manipulacao;
 
 public class Cliente {
     //adIciona novo cliente
-    public void novoCliente() throws Exception{
+    public void novoCliente() throws Exception {
         String dados = "";
         String cadastro = "";   //número de cadastro do cliente na loja
         String idade = "";
@@ -29,21 +29,22 @@ public class Cliente {
 
 
 
-        System.out.println("INSIRA A IDADE DO CLIENTE :");
-        idade = in2.nextLine();
-        System.out.println("INSIRA O CPF DO CLIENTE :");
-        cpf = in2.nextLine();
-        if (cpf.length() == 11){
-        //String para juntar tudo, na hora de escrever
-        dados += nome + ";" + idade + ";" + cpf + "\n";
-        }
-        else{
-            System.out.println("CPF INSERIDO INCORRETAMENTE");
+        while(true){
+            System.out.println("INSIRA O CPF DO CLIENTE :");
+            cpf = in2.nextLine();
+            if (cpf.length() == 11){
+            //String para juntar tudo, na hora de escrever
+            dados += nome + ";" + idade + ";" + cpf + "\n";
+            Manipulacao.escreverArquivo(file, dados);
+            break;
+            }
+            else{
+                System.out.println("CPF INSERIDO INCORRETAMENTE");
+            }}
         }
 
-        Manipulacao.escreverArquivo(file, dados);  
           
-    }
+    
 
         //OBS: Utilizar esse método após verificar que o cliente não possui nenhum filme, se houver, tem que fazer a devolução primeiro;
     public void deletarCliente() throws FileNotFoundException{
@@ -51,13 +52,22 @@ public class Cliente {
         Scanner in = new Scanner(System.in);
         System.out.println("INSIRA O NÚMERO DE CADASTRO DO CLIENTE :");
         cadastro = in.nextLine();
-        File file = new File(Manipulacao.clientes + cadastro + ".txt");
-        file.delete();
-        System.out.println("CLIENTE REMOVIDO");
+        File file1 = new File(Manipulacao.clientes + cadastro + ".txt");
+        File file2 = new File(Manipulacao.filmesAlugados + cadastro +".txt");
+        File file3 = new File(Manipulacao.historicoClientes + cadastro +".txt");
+        if(file1.isFile()){
+        file1.delete();
+        file2.delete();
+        file3.delete();
+
+        System.out.println("CLIENTE REMOVIDO");}
+        else{System.out.println("NÚMERO DE CADASTRO NÃO EXISTE");}
     }
+
 
     public void pesquisarCliente() throws Exception{
         Scanner in = new Scanner(System.in);
+        
         System.out.println("INSIRA O NÚMERO DE CADASTRO DO CLIENTE :");
         String cadastro = in.nextLine();
         File file = new File(Manipulacao.clientes + cadastro + ".txt");
@@ -84,26 +94,31 @@ public class Cliente {
         String codigo = in.nextLine();
         File cliente = new File(Manipulacao.clientes + codigo + ".txt");
         //separa os dados do cliente em várias strings
-        String[] dados = Manipulacao.lerArquivo(cliente).split(";");
-        //Altera os dados de um por um
-        System.out.println("INSIRA O NOME :");
-        String novoNome = in.nextLine();
-        if(novoNome.equals(" ")){
-            novoNome = dados[0];
+        if(cliente.isFile()){
+            String[] dados = Manipulacao.lerArquivo(cliente).split(";");
+            //Altera os dados de um por um
+            System.out.println("INSIRA O NOME :");
+            String novoNome = in.nextLine();
+            if(novoNome.equals(" ")){
+                novoNome = dados[0];
+            }
+            System.out.println("INSIRA A IDADE :");
+            String novaIdade = in.nextLine();
+            if(novaIdade.equals(" ")){
+                novaIdade = dados[1];
+            }
+            System.out.println("INSIRA O CPF :");
+            String novoCPF = in.nextLine();
+            if(novoCPF.equals((" "))){
+                novoCPF = dados[2];
+            }
+            //junta todos os dados alterados e reescreve o arquivo
+            String salvaDados = novoNome + ";" + novaIdade + ";" + novoCPF;
+            Manipulacao.escreverArquivoApagando(cliente, salvaDados);
         }
-        System.out.println("INSIRA A IDADE :");
-        String novaIdade = in.nextLine();
-        if(novaIdade.equals(" ")){
-            novaIdade = dados[1];
+        else{
+            System.out.println("NUMERO DE CADASTRO NÃO EXISTE");
         }
-        System.out.println("INSIRA O CPF :");
-        String novoCPF = in.nextLine();
-        if(novoCPF.equals((" "))){
-            novoCPF = dados[2];
-        }
-        //junta todos os dados alterados e reescreve o arquivo
-        String salvaDados = novoNome + ";" + novaIdade + ";" + novoCPF;
-        Manipulacao.escreverArquivoApagando(cliente, salvaDados);
     }
 
     public void aplicarMulta(String codigo) throws Exception{

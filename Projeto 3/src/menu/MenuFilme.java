@@ -16,16 +16,32 @@ public class MenuFilme {
             opcao = in.nextInt();
             switch(opcao){
                 case 1:
-                    filme.adicionarFilme();
+                    try {
+                         filme.adicionarFilme();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 2:
-                    filme.deletarFilme();
+                    try {  
+                        filme.deletarFilme();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 3:
-                    filme.pesquisarFilme();
+                    try {
+                        filme.pesquisarFilme();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 4:
-                    filme.listarFilmes();
+                    try {
+                        filme.listarFilmes();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case 5:
                     try {
