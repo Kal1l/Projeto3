@@ -13,7 +13,7 @@ public class App {
         boolean flag = true;
         int opção=0;
         while(flag){
-            System.out.println("BEM VINDO, O QUE DESEJA ?\n1-OPERACOES DOS CLIENTES \n2-OPERACOES DOS FILMES\n3-OPERACOES DA LOCADORA\n3-SAIR");
+            System.out.println("BEM VINDO, O QUE DESEJA ?\n1-OPERACOES DOS CLIENTES \n2-OPERACOES DOS FILMES\n3-OPERACOES DA LOCADORA\n4-SAIR");
             opção=in.nextInt();
             switch(opção){
                 case 1:

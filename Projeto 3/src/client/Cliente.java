@@ -86,17 +86,17 @@ public class Cliente {
         //separa os dados do cliente em várias strings
         String[] dados = Manipulacao.lerArquivo(cliente).split(";");
         //Altera os dados de um por um
-        System.out.println("Digite o nome :");
+        System.out.println("INSIRA O NOME :");
         String novoNome = in.nextLine();
         if(novoNome.equals(" ")){
             novoNome = dados[0];
         }
-        System.out.println("Digite a idade :");
+        System.out.println("INSIRA A IDADE :");
         String novaIdade = in.nextLine();
         if(novaIdade.equals(" ")){
             novaIdade = dados[1];
         }
-        System.out.println("Digite o CPF :");
+        System.out.println("INSIRA O CPF :");
         String novoCPF = in.nextLine();
         if(novoCPF.equals((" "))){
             novoCPF = dados[2];
@@ -106,10 +106,8 @@ public class Cliente {
         Manipulacao.escreverArquivoApagando(cliente, salvaDados);
     }
 
-    public void aplicarMulta() throws Exception{
+    public void aplicarMulta(String codigo) throws Exception{
         Scanner in = new Scanner(System.in);
-        System.out.println("DIGITE O CODIGO DO CLIENTE");
-        String codigo=in.nextLine();
         System.out.println("DIGITE OS DIAS DE ATRASO");
         int dias=in.nextInt();
         File file = new File(Manipulacao.filmesAlugados + codigo + ".txt");

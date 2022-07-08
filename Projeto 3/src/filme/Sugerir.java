@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Sugerir {
     //arrumar os métodos de sugestão, pois não estão pegando casos de multiplos gêneros ou atores
-    
     public void sugestaoGenero(){
         System.out.println("DIGITE O CADASTRO DO CLIENTE:");
         Scanner in = new Scanner(System.in);

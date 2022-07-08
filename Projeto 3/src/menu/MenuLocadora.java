@@ -9,8 +9,8 @@ public class MenuLocadora {
         Sugerir sugerir = new Sugerir();
         Ranking rankear = new Ranking();
         Scanner in = new Scanner(System.in);
-        /*System.out.println("DIGITE O CADASTRO DO CLIENTE: ");
-        String cad=in.nextLine();*/
+        System.out.println("DIGITE O CADASTRO DO CLIENTE: ");
+        String cad=in.nextLine();
         int opcao;
         boolean flag = false;
         while(!flag){
@@ -19,12 +19,12 @@ public class MenuLocadora {
             switch(opcao){
             case 1:
                 try {
-                    alugar.alugarFilme();
+                    alugar.alugarFilme(cad);
                 } catch (Exception e) { e.printStackTrace();}
                 break;
             case 2:
                 try{
-                    alugar.devolverFilme();
+                    alugar.devolverFilme(cad);
                 } catch(Exception e) {e.printStackTrace();}
                 break;
             case 3:

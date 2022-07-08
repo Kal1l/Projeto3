@@ -16,10 +16,8 @@ Problemas:
  */
 
 public class AlugarDevolver {
-    public void alugarFilme() throws Exception{
+    public void alugarFilme(String codigo) throws Exception{
         Scanner in = new Scanner(System.in);
-        System.out.println("DIGITE O CODIGO DO CLIENTE");
-        String codigo = in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
         //verifica se o cliente possui algum filme alugado
         if(verificaFilmeAlugado.length() == 0) {
@@ -62,9 +60,9 @@ public class AlugarDevolver {
                             if(classificacao > idade){
                                 //caso a condição seja quebrada
                                 flag2=false;
-                                }
                             }
                     }
+                }
                     if(flag2){
                         //caso a condição seja cumprida, copia as strings escritas pelo usuário para uma variável externa do loop
                         codigoFilme1=vefCodigoFilme1;
@@ -75,7 +73,7 @@ public class AlugarDevolver {
                         break;
                     } else {
                         System.out.println("CLASSIFICAÇÃO IMPRÓPRIA PRO CLIENTE");
-                    }
+                }
             }   
 
             double preco = 0;
@@ -101,8 +99,21 @@ public class AlugarDevolver {
                         filmesTotal++;
                 }
             }
+            //data em que os filmes foram alugados
+            System.out.println("INSIRA A DATA DE HOJE(DIA/MES/ANO):");
+            String data=new String();
+            while(true){
+                String data2=in.nextLine();
+                if(data2.contains("/")){
+                    data= data2;
+                    break;
+                }
+                else{
+                    System.out.println("INSIRA A DATA NO FORMATO CORRETO");
+                }
+            }
             //junta tudo e escreve no arquivo
-            salvaDados+= "Total R$; " + preco + " ;"+filmesTotal+ "\n" + "\n" + aluguel;
+            salvaDados+= "Total R$; " + preco + " ;"+filmesTotal+" ;"+ data +"\n" + "\n" + aluguel;
             File aluguelFilme = new File(Manipulacao.filmesAlugados + codigo + ".txt");
             Manipulacao.escreverArquivoApagando(aluguelFilme, salvaDados);
             System.out.println("ALUGUEL REALIZADO");
@@ -111,30 +122,29 @@ public class AlugarDevolver {
         }
     }
 
-    public void devolverFilme() throws Exception {
+    public void devolverFilme(String codigo) throws Exception {
         Scanner in = new Scanner(System.in);
-        System.out.println("DIGITE O CODIGO DO CLIENTE");
-        String codigo = in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
         //quando o cliente possui algum filme e não possui multa
         if(verificaFilmeAlugado.length() != 0) {
             File aluguelFilme = new File(Manipulacao.filmesAlugados + codigo + ".txt");
             String[] dados= Manipulacao.lerArquivo(aluguelFilme).split("\n");
+            String[] dados2=dados[0].split(";");
             int option=0;
             String valor ="";
+            System.out.println("ALUGOU EM: "+dados2[3]);
             System.out.println("CLIENTE FEZ A DEVOLUÇÃO COM ATRASO?\n1-SIM\n2-NÃO");
             option=in.nextInt();
             switch(option){
                 case 1:
                 Cliente cliente = new Cliente();
-                cliente.aplicarMulta();
+                cliente.aplicarMulta(codigo);
                 int i= dados.length-1;
                 valor=dados[i];
                 aluguelFilme.delete();
                 System.out.println(valor);
                 break;
                 case 2:
-                String[] dados2=dados[0].split(";");
                 valor=dados2[0].replace(";",":")+dados2[1];
                 aluguelFilme.delete();
                 System.out.println(valor);
