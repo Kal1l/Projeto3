@@ -14,14 +14,16 @@ public class Sugerir {
         String[] string = Manipulacao.lerArquivo(file).split("\n");
         int end = string.length-1;
         String[] string2= string[end].split(";");
-        String generoFilme = string2[1];
+        String[] generoFilme = string2[1].split(",");
         File biblioteca= new File(Manipulacao.filmes);
         for(File sugestao:biblioteca.listFiles()){
             String[] dados= Manipulacao.lerArquivo(sugestao).split(";");
             for(int i=0;i<dados.length;i++){
-                if(dados[i].contains(generoFilme)){
-                    System.out.println("===============================");
-                    System.out.println("Titulo : " +dados[0]+ ",atores :" +dados[1]+",genero :"+dados[2]+",classificação :"+dados[3]+",preço :" + dados[4]);
+                for(int j=0;j<generoFilme.length;j++){
+                    if(dados[i].contains(generoFilme[j])){
+                        System.out.println("===============================");
+                        System.out.println("Titulo : " +dados[0]+ ",atores :" +dados[1]+",genero :"+dados[2]+",classificação :"+dados[3]+",preço :" + dados[4]);
+                    }
                 }
             }
         }
@@ -36,14 +38,16 @@ public class Sugerir {
         String[] string = Manipulacao.lerArquivo(file).split("\n");
         int end = string.length-1;
         String[] string2= string[end].split(";");
-        String atoresFilme = string2[2];
+        String[] atoresFilme = string2[2].split(",");
         File biblioteca= new File(Manipulacao.filmes);
         for(File sugestao:biblioteca.listFiles()){
             String[] dados= Manipulacao.lerArquivo(sugestao).split(";");
             for(int i=0;i<dados.length;i++){
-                if(dados[i].contains(atoresFilme)){
-                    System.out.println("===============================");
-                    System.out.println("Titulo : " +dados[0]+ ",atores :" +dados[1]+",genero :"+dados[2]+",classificação :"+dados[3]+",preço :" + dados[4]);
+                for(int j=0;j<atoresFilme.length;j++){
+                    if(dados[i].contains(atoresFilme[j])){
+                        System.out.println("===============================");
+                        System.out.println("Titulo : " +dados[0]+ ",atores :" +dados[1]+",genero :"+dados[2]+",classificação :"+dados[3]+",preço :" + dados[4]);
+                    }
                 }
             }
         }

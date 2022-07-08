@@ -29,7 +29,7 @@ public class MenuLocadora {
                 break;
             case 3:
                 System.out.println("SUGERIR POR:\n1-GENERO\n2-ATOR(ES)");
-                int opttmp=0;
+                int opttmp=in.nextInt();
                 if(opttmp==1){
                     sugerir.sugestaoGenero();
                 }
