@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-import filme.Ranking;
 import manipulacao.Manipulacao;
 import menu.*;
 
@@ -9,27 +8,28 @@ public class App {
         Manipulacao.gerarPastas();
         MenuCliente menucliente=new MenuCliente();
         MenuFilme menuFilme = new MenuFilme();
+        MenuLocadora menuLocadora=new MenuLocadora();
         Scanner in=new Scanner(System.in);
+        boolean flag = true;
         int opção=0;
-        while(opção!=3){
-            System.out.println("BEM VINDO, O QUE DESEJA ?\n1-CLIENTE\n2-FILME\n3-SAIR");
+        while(flag){
+            System.out.println("BEM VINDO, O QUE DESEJA ?\n1-OPERACOES DOS CLIENTES \n2-OPERACOES DOS FILMES\n3-OPERACOES DA LOCADORA\n3-SAIR");
             opção=in.nextInt();
-            if(opção==1){
+            switch(opção){
+                case 1:
                 menucliente.mostrarMenu();
-            }
-            else if(opção==2){
+                break;
+                case 2:
                 menuFilme.mostrarMenuFilme();
-            } 
-            else if(opção==3){
-                Ranking ranking = new Ranking();
-                ranking.rankearFilmes();
-            }
-            else if(opção==4){
-                System.out.println("SAINDO");
-                System.exit(1);
-            }
-            else {
-                System.out.println("OPÇÃO INVÁLIDA");
+                break;
+                case 3:
+                menuLocadora.mostraMenu();
+                break;
+                case 4:
+                flag=false;
+                break;
+                default:
+                System.out.println("OPCAO INVALIDA");
             }
         }
         in.close();

@@ -21,6 +21,7 @@ public class AlugarDevolver {
         System.out.println("DIGITE O CODIGO DO CLIENTE");
         String codigo = in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
+        //verifica se o cliente possui algum filme alugado
         if(verificaFilmeAlugado.length() == 0) {
             System.out.println("ESCOLHA UM FILME DA LISTA A SEGUIR(DIGITE O CÓDIGO DO FILME) :");
             File filmes = new File(Manipulacao.filmes);
@@ -31,11 +32,52 @@ public class AlugarDevolver {
                 System.out.println(", Titulo : " +dados[0]+", Genero :"+dados[2]+", Classificação :"+dados[3]+",Preço R$ :" + dados[4]);
             }
             System.out.println("===============================");
-            //File cliente = new File(Manipulacao.clientes+codigo+".txt");
-            //String[] idade = Manipulacao.lerArquivo(cliente).split(",");  (Começo da exceção do cliente pegando filmes para classifiações maiores)
-            String codigoFilme1 = in.nextLine();
-            String codigoFilme2 = in.nextLine();
-            String codigoFilme3 = in.nextLine();
+            File cliente = new File(Manipulacao.clientes+codigo+".txt");
+            String[] string = Manipulacao.lerArquivo(cliente).split(";");
+            int idade= Integer.parseInt(string[1]);
+            boolean flag = true;
+
+            //valores dos códigos do filme
+            String codigoFilme1 = new String();
+            String codigoFilme2 = new String();
+            String codigoFilme3 = new String();
+            
+            //prevenindo um cliente de alugar um filme com a classificação maior que a sua idade
+            while(flag){
+                String vefCodigoFilme1=in.nextLine();
+                String vefCodigoFilme2=in.nextLine();
+                String vefCodigoFilme3=in.nextLine();
+                //prevenção da condição: classificação < idade
+                boolean flag2 = true;
+
+                //lê todos os arquivos de filme
+                for(File filme : filmes.listFiles()){
+                    String codigoDoFilmeProcura = filme.getName().replace(".txt","");
+                    String[] dados = Manipulacao.lerArquivo(filme).split(";");
+                    //caso encontre um dos códigos que foi dado
+                    if(vefCodigoFilme1.equals(codigoDoFilmeProcura) || vefCodigoFilme2.equals(codigoDoFilmeProcura) ||
+                        codigoFilme3.equals(codigoDoFilmeProcura)){
+                            //pega a classificação e transforma em inteiro
+                            int classificacao = Integer.parseInt(dados[3]);
+                            if(classificacao > idade){
+                                //caso a condição seja quebrada
+                                flag2=false;
+                                }
+                            }
+                    }
+                    if(flag2){
+                        //caso a condição seja cumprida, copia as strings escritas pelo usuário para uma variável externa do loop
+                        codigoFilme1=vefCodigoFilme1;
+                        codigoFilme2=vefCodigoFilme2;
+                        codigoFilme3=vefCodigoFilme3;
+                        //desativa e quebra o loop
+                        flag=false;
+                        break;
+                    } else {
+                        System.out.println("CLASSIFICAÇÃO IMPRÓPRIA PRO CLIENTE");
+                    }
+            }   
+
             double preco = 0;
             int filmesTotal = 0;
             String aluguel = "";
@@ -45,16 +87,21 @@ public class AlugarDevolver {
                 String[] dados = Manipulacao.lerArquivo(filme).split(";");
                 if(codigoFilme1.equals(codigoDoFilmeProcura) || codigoFilme2.equals(codigoDoFilmeProcura) ||
                     codigoFilme3.equals(codigoDoFilmeProcura)){
+                        //preço de todos os filmes  juntos
                         preco += Double.parseDouble(dados[4].replaceAll(",", "."));
+                        //string com o preço e nome do filme alugados
                         aluguel+=dados[0] + ";R$ " + dados[4] + "\n";
+                        //adiciona ao histórico do cliente
                         File historicoCliente=new File(Manipulacao.historicoClientes+codigo+".txt");
                         Manipulacao.escreverArquivo(historicoCliente, dados[0]+";"+dados[1]+";"+dados[2]+"\n");
+                        //adiciona ao histórico geral de filmes
                         File historicoFilmes=new File(Manipulacao.historicoFilmes,"historico.txt");
                         Manipulacao.escreverArquivo(historicoFilmes, dados[0]+"\n");
+                        //adiciona ao total de filmes
                         filmesTotal++;
                 }
             }
-            //Adiciona o valor da multa inicial
+            //junta tudo e escreve no arquivo
             salvaDados+= "Total R$; " + preco + " ;"+filmesTotal+ "\n" + "\n" + aluguel;
             File aluguelFilme = new File(Manipulacao.filmesAlugados + codigo + ".txt");
             Manipulacao.escreverArquivoApagando(aluguelFilme, salvaDados);
