@@ -114,14 +114,14 @@ public class Cliente {
         String[] dados =  Manipulacao.lerArquivo(file).split("\n");
         String[] dados2 = dados[0].split(";");
         double valor = Double.parseDouble(dados2[1].replaceAll(",","."));
-        int filmesTotal = Integer.parseInt(dados2[2]);
+        double filmesTotal = Double.parseDouble(dados2[2]);
         double valor2 = valor + (1.20*dias*filmesTotal);
         String salvarDados = "";
         for(int cont=0;cont<dados.length;cont++){
             String aux=dados[cont];
             salvarDados += aux+"\n";
         }
-        salvarDados += "Total c/multa: R$ " + valor2 +"\n";
+        salvarDados += "Total c/multa: R$ " + valor2 + "\n" + "";
         Manipulacao.escreverArquivoApagando(file, salvarDados); 
     }
 }

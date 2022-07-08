@@ -16,8 +16,10 @@ Problemas:
  */
 
 public class AlugarDevolver {
-    public void alugarFilme(String codigo) throws Exception{
+    public void alugarFilme() throws Exception{
         Scanner in = new Scanner(System.in);
+        System.out.println("DIGITE O CADASTRO DO CLIENTE: ");
+        String codigo=in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
         //verifica se o cliente possui algum filme alugado
         if(verificaFilmeAlugado.length() == 0) {
@@ -100,20 +102,20 @@ public class AlugarDevolver {
                 }
             }
             //data em que os filmes foram alugados
-            System.out.println("INSIRA A DATA DE HOJE(DIA/MES/ANO):");
+            System.out.println("INSIRA A DATA DE HOJE(00/00/00):");
             String data=new String();
             while(true){
                 String data2=in.nextLine();
-                if(data2.contains("/")){
+                if(data2.length() == 8 && data2.contains("/")){
                     data= data2;
                     break;
                 }
                 else{
-                    System.out.println("INSIRA A DATA NO FORMATO CORRETO");
+                    System.out.println("INSIRA A DATA CORRETAMENTE");
                 }
             }
             //junta tudo e escreve no arquivo
-            salvaDados+= "Total R$; " + preco + " ;"+filmesTotal+" ;"+ data +"\n" + "\n" + aluguel;
+            salvaDados+= "Total R$; " + preco + ";"+filmesTotal+";"+ data +"\n" + "\n" + aluguel ;
             File aluguelFilme = new File(Manipulacao.filmesAlugados + codigo + ".txt");
             Manipulacao.escreverArquivoApagando(aluguelFilme, salvaDados);
             System.out.println("ALUGUEL REALIZADO");
@@ -122,8 +124,10 @@ public class AlugarDevolver {
         }
     }
 
-    public void devolverFilme(String codigo) throws Exception {
+    public void devolverFilme() throws Exception {
         Scanner in = new Scanner(System.in);
+        System.out.println("DIGITE O CADASTRO DO CLIENTE: ");
+        String codigo=in.nextLine();
         File verificaFilmeAlugado = new File(Manipulacao.filmesAlugados + codigo + ".txt");
         //quando o cliente possui algum filme e não possui multa
         if(verificaFilmeAlugado.length() != 0) {
@@ -135,12 +139,15 @@ public class AlugarDevolver {
             System.out.println("ALUGOU EM: "+dados2[3]);
             System.out.println("CLIENTE FEZ A DEVOLUÇÃO COM ATRASO?\n1-SIM\n2-NÃO");
             option=in.nextInt();
+            String pause=new String();
             switch(option){
                 case 1:
                 Cliente cliente = new Cliente();
                 cliente.aplicarMulta(codigo);
-                int i= dados.length-1;
-                valor=dados[i];
+                String[] dados3=Manipulacao.lerArquivo(aluguelFilme).split("\n");
+                int i= dados3.length-1;
+                valor=dados3[i];
+                pause=in.nextLine();
                 aluguelFilme.delete();
                 System.out.println(valor);
                 break;
